@@ -1,10 +1,10 @@
-package com.gi.pharmaceuticalStorage;
+package com.gi.pharmacyWarehouse;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PharmaceuticalStorageApplicationTests {
+class PharmaceuticalWarehouseApplicationTests {
 
 	@Test
 	void contextLoads() {
