@@ -1,5 +1,7 @@
 package com.gi.pharmacyWarehouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -11,11 +13,11 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Table(name = "drugs")
+@Table(name = "pharmacy_drugs")
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // required by JPA, but protected so not misused
 @Builder
 @AllArgsConstructor
-@ToString(onlyExplicitlyIncluded = true)  // avoid lazy-loading problems
+@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true) // safer equality (by id only)
 public class Drug {
 
@@ -23,6 +25,7 @@ public class Drug {
     @GeneratedValue
     @UuidGenerator
     @Column(name = "id", updatable = false, nullable = false)
+    @ToString.Exclude
     private UUID id;
 
     @Column(name = "code", nullable = false, unique = true)
@@ -41,8 +44,8 @@ public class Drug {
     @Column(name = "stock", nullable = false)
     private int stock;
 
-    @ManyToOne(fetch = FetchType.EAGER) // EAGER because we want to print the whole category object
-    @JoinColumn(name = "category_id")  // foreign key column
+    @ManyToOne(fetch = FetchType.LAZY) // keep DB relation
+    @JoinColumn(name = "category_name",referencedColumnName = "name")  // foreign key column
     private DrugCategory category;
 
 }

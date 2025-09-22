@@ -7,17 +7,16 @@ import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "warehouse_movements")
+@Table(name = "pharmacy_movements")
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // required by JPA
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class WarehouseMovement {
+public class Movement {
 
     @Id
     @GeneratedValue
