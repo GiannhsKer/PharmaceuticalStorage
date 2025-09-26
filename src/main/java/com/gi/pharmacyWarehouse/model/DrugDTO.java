@@ -1,18 +1,14 @@
 package com.gi.pharmacyWarehouse.model;
 
-import java.util.UUID;
-
-public record DrugResponse(
-        UUID id,
+public record DrugDTO(
         String code,
         String name,
         double price,
         int stock,
-        String categoryName
+        String category
 ) {
-    public static DrugResponse fromEntity(Drug drug) {
-        return new DrugResponse(
-                drug.getId(),
+    public static DrugDTO fromEntity(Drug drug) {
+        return new DrugDTO(
                 drug.getCode(),
                 drug.getName(),
                 drug.getPrice(),

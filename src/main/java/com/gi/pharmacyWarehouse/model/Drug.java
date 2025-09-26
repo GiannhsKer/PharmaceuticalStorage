@@ -15,8 +15,8 @@ import java.util.UUID;
 @Data
 @Table(name = "pharmacy_drugs")
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // required by JPA, but protected so not misused
-@Builder
 @AllArgsConstructor
+@Builder
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true) // safer equality (by id only)
 public class Drug {
@@ -44,7 +44,7 @@ public class Drug {
     @Column(name = "stock", nullable = false)
     private int stock;
 
-    @ManyToOne(fetch = FetchType.LAZY) // keep DB relation
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_name",referencedColumnName = "name")  // foreign key column
     private DrugCategory category;
 

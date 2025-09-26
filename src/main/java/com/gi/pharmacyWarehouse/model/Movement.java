@@ -24,7 +24,7 @@ public class Movement {
     @EqualsAndHashCode.Include
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
-
+    
     @NotNull(message = "Drug is required")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drug_id", nullable = false)
@@ -39,7 +39,7 @@ public class Movement {
     private LocalDate movementDate;
 
     @NotNull(message = "Movement type is required")
-    @Enumerated(EnumType.STRING) // store enum as string in DB
+    @Enumerated(EnumType.STRING)
     @Column(name = "movement_type", nullable = false)
     private MovementType movementType;
 
