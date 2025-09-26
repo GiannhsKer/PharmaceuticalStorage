@@ -1,4 +1,6 @@
-package com.gi.pharmacyWarehouse.model;
+package com.gi.pharmacyWarehouse.dto;
+
+import com.gi.pharmacyWarehouse.model.Movement;
 
 import java.time.LocalDate;
 import java.util.UUID;

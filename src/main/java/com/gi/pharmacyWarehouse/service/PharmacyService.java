@@ -1,5 +1,7 @@
 package com.gi.pharmacyWarehouse.service;
 
+import com.gi.pharmacyWarehouse.dto.DrugDTO;
+import com.gi.pharmacyWarehouse.dto.MovementDTO;
 import com.gi.pharmacyWarehouse.model.*;
 import com.gi.pharmacyWarehouse.repository.DrugCategoryRepository;
 import com.gi.pharmacyWarehouse.repository.DrugRepository;

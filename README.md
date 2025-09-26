@@ -1,4 +1,4 @@
-# PharnacyStorage - Pharmacy Management System
+# PharmacyStorage - Pharmacy Management System
 
 A Spring Boot REST API for managing a pharmacy’s drugs, categories, and stock movements.
 It supports recording in/out movements, filtering them by date and drug, and retrieving results in a clean response DTO.
@@ -9,7 +9,7 @@ It supports recording in/out movements, filtering them by date and drug, and ret
 ## Technology Stack
 
 - **Java 21**
-- **Spring Boot 3.4.3**
+- **Spring Boot 3.5.6**
 - **Spring Data JPA**
 - **PostgreSQL**
 - **Lombok** (Reduces boilerplate code)
@@ -45,7 +45,7 @@ The application will start on `http://localhost:8080`
 
 ### Base URL
 ```
-http://localhost:8080/api/v1/pharnacy
+http://localhost:8080/api/v1/Pharmacy
 ```
 **Sample - Request**
 GET /api/movements?fromDate=2025-09-01&toDate=2025-09-21&drugNames=Aspirin&drugNames=Paracetamol
@@ -93,33 +93,35 @@ PHARMACYSTORAGE/
 │   │   │   ├── controller/
 │   │   │   │   └── PharmacyController.java
 │   │   │   │
-│   │   │   ├── service/
-│   │   │   │   └── PharmacyService.java
-│   │   │   ├── exception
-│   │   │   │   └── DrugException.java
-│   │   │   ├── repository/
-│   │   │   │   ├── DrugRepository.java
-│   │   │   │   ├── DrugCategoryRepository.java
-│   │   │   │   └── MovementRepository.java
+│   │   │   ├── dto/
+│   │   │   │   ├── DrugDTO.java
+│   │   │   │   └── MovementDTO.java
+│   │   │   │
+│   │   │   ├── exception/
+│   │   │   │   ├── DrugException.java
+│   │   │   │   └── Global ExceptionHandler.java
 │   │   │   │
 │   │   │   ├── model/
+│   │   │   │   ├── ApiError.java
+│   │   │   │   ├── ApiResponse.java
 │   │   │   │   ├── Drug.java
 │   │   │   │   ├── DrugCategory.java
 │   │   │   │   ├── Movement.java
-│   │   │   │   └── MovementType.java   # enum
 │   │   │   │
-│   │   │   ├── dto/
-│   │   │   │   └── MovementResponse.java
+│   │   │   ├── repository/
+│   │   │   │   ├── DrugCategoryRepository.java
+│   │   │   │   ├── DrugRepository.java
+│   │   │   │   └── MovementRepository.java
+│   │   │   │
+│   │   │   ├── service/
+│   │   │   │   └── PharmacyService.java
 │   │   │   │
 │   │   │   └── PharmacyWarehouseApplication.java
 │   │   │
 │   │   └── resources/
 │   │       └── application.properties
-│   │
 
-        
 ```
-
 ## Contributing
 
 1. Fork the repository

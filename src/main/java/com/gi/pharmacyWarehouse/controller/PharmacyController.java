@@ -1,6 +1,7 @@
 package com.gi.pharmacyWarehouse.controller;
 
-import com.gi.pharmacyWarehouse.exception.DrugException;
+import com.gi.pharmacyWarehouse.dto.DrugDTO;
+import com.gi.pharmacyWarehouse.dto.MovementDTO;
 import com.gi.pharmacyWarehouse.model.*;
 import com.gi.pharmacyWarehouse.service.PharmacyService;
 import jakarta.validation.Valid;

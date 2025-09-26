@@ -1,4 +1,6 @@
-package com.gi.pharmacyWarehouse.model;
+package com.gi.pharmacyWarehouse.dto;
+
+import com.gi.pharmacyWarehouse.model.Drug;
 
 public record DrugDTO(
         String code,
