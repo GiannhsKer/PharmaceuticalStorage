@@ -1,7 +1,6 @@
 package com.gi.pharmacyWarehouse.exception;
 
-import com.gi.pharmacyWarehouse.model.ApiError;
-import com.gi.pharmacyWarehouse.model.ApiResponse;
+import com.gi.pharmacyWarehouse.dto.ApiError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,4 +1,4 @@
-package com.gi.pharmacyWarehouse.model;
+package com.gi.pharmacyWarehouse.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

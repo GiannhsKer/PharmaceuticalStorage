@@ -1,3 +1,3 @@
-package com.gi.pharmacyWarehouse.model;
+package com.gi.pharmacyWarehouse.dto;
 
 public record ApiError(String error, String message) {}
