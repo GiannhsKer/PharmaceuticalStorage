@@ -45,7 +45,7 @@ The application will start on `http://localhost:8080`
 
 ### Base URL
 ```
-http://localhost:8080/api/v1/Pharmacy
+http://localhost:8080/api/v1/pharmacy
 ```
 **Sample - Request**
 GET /api/movements?fromDate=2025-09-01&toDate=2025-09-21&drugNames=Aspirin&drugNames=Paracetamol
