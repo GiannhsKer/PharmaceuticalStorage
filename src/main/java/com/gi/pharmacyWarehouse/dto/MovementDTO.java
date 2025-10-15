@@ -6,17 +6,17 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public record MovementDTO(
-        UUID id,
-        String name,
+        String drugName,
         int stock,
-        LocalDate movementDate
+        LocalDate movementDate,
+        Movement.MovementType movementType
 ) {
     public static MovementDTO fromEntity(Movement movement) {
         return new MovementDTO(
-                movement.getId(),
                 movement.getDrug().getName(),
                 movement.getQuantity(),
-                movement.getMovementDate()
+                movement.getMovementDate(),
+                movement.getMovementType()
         );
     }
 }

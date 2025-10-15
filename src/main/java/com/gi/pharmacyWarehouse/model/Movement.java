@@ -26,21 +26,31 @@ public class Movement {
     private UUID id;
     
     @NotNull(message = "Drug is required")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "drug_id", nullable = false)
     private Drug drug;
 
-    @Min(value = 1, message = "Quantity must be at least 1")
+    @Column(name = "drug_name_snapshot", nullable = false)
+    private String drugNameSnapshot;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.drug != null) {
+            this.drugNameSnapshot = this.drug.getName();
+        }
+    }
+
+    @Min(value = 0, message = "Quantity must be at least 1")
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
     @NotNull(message = "Movement date is required")
-    @Column(name = "movement_date", nullable = false)
+    @Column(name = "date", nullable = false)
     private LocalDate movementDate;
 
     @NotNull(message = "Movement type is required")
     @Enumerated(EnumType.STRING)
-    @Column(name = "movement_type", nullable = false)
+    @Column(name = "type", nullable = false)
     private MovementType movementType;
 
     // Enum for movement type

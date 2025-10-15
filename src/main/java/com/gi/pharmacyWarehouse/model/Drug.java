@@ -28,8 +28,8 @@ public class Drug {
     @ToString.Exclude
     private UUID id;
 
-    @Column(name = "code", nullable = false, unique = true)
     @NotBlank(message = "Code is required")
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
 
     @NotBlank(message = "Name is required")
@@ -45,7 +45,17 @@ public class Drug {
     private int stock;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_name",referencedColumnName = "name")  // foreign key column
+    @JoinColumn(name = "category_id")
     private DrugCategory category;
+
+    @Column(name = "category_name_snapshot", nullable = false)
+    private String categoryNameSnapshot;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.category != null) {
+            this.categoryNameSnapshot = this.category.getName();
+        }
+    }
 
 }

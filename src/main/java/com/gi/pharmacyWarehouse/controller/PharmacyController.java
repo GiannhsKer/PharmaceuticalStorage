@@ -25,8 +25,8 @@ public class PharmacyController {
 
     private final PharmacyService pharmacyService;
 
-    @PostMapping("/addDrug")
-    public ResponseEntity<ApiResponse<Drug>> createAppointment(@Valid @RequestBody DrugDTO request) {
+    @PostMapping("/addNewDrug")
+    public ResponseEntity<ApiResponse<Drug>> addNewDrug(@Valid @RequestBody DrugDTO request) {
         log.info("POST /api/v1/pharmacy - New drug added : {} !", request.name());
         Drug addedDrug = pharmacyService.addNewDrug(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(
@@ -34,9 +34,9 @@ public class PharmacyController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Drug>>> getAllDrugs() {
+    public ResponseEntity<ApiResponse<List<DrugDTO>>> getAllDrugs() {
         log.info("GET /api/v1/pharmacy - Fetching all drugs");
-        List<Drug> drugsList = new ArrayList<>(pharmacyService.getAllDrugs());
+        List<DrugDTO> drugsList = pharmacyService.getAllDrugs();
         String dbResponse = drugsList.isEmpty() ? "No drugs found in the warehouse" : "Drugs retrieved successfully";
         return ResponseEntity.ok(ApiResponse.success(dbResponse, drugsList));
     }
@@ -51,6 +51,26 @@ public class PharmacyController {
         List<MovementDTO> movements = pharmacyService.getDrugsByDateRange(fromDate, toDate, drugNames);
         return ResponseEntity.ok(ApiResponse.success("Movements retrieved successfully",
                 movements));
+    }
+
+    @PatchMapping("/sellDrug")
+    public ResponseEntity<ApiResponse<MovementDTO>> sellDrug(
+            @RequestParam String drugName,
+            @RequestParam int quantity) {
+        log.info("PATCH /api/v1/pharmacy/sellDrug - Drug  : {}, quantity : {}", drugName, quantity);
+        MovementDTO movement = pharmacyService.changeDrugStock(drugName, quantity, Movement.MovementType.OUT);
+        return ResponseEntity.ok(ApiResponse.success(quantity + " " + drugName +
+                        "(s) taken out of the storage",movement));
+    }
+
+    @PatchMapping("/addDrug")
+    public ResponseEntity<ApiResponse<MovementDTO>> addDrug(
+            @RequestParam String drugName,
+            @RequestParam int quantity) {
+        log.info("PATCH /api/v1/pharmacy/addDrug - Drug  : {}, quantity : {}", drugName, quantity);
+        MovementDTO movement = pharmacyService.changeDrugStock(drugName, quantity, Movement.MovementType.IN);
+        return ResponseEntity.ok(ApiResponse.success(quantity + " " + drugName +
+                "(s) were added to the storage",movement));
     }
 
 }
